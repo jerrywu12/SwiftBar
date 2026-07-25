@@ -78,12 +78,13 @@ while IFS= read -r process_row; do
     gemini_tasks+=("${pid}"$'\t'"${elapsed}")
   fi
 
-  if [[ "$process_command" =~ '[aA]ntigravity' ]] &&
-     [[ "$process_command" != *codex-status.5s.sh* ]] &&
-     [[ "$process_command" != *"Google Chrome"* ]] &&
-     [[ "$process_command" != */.antigravity-ide/extensions/* ]] &&
-     [[ "$process_command" != /Applications/Antigravity\ IDE.app/* ]] &&
-     [[ "$process_command" != /Applications/Antigravity.app/* ]]; then
+  if { [[ "$process_command" =~ 'language_server_macos_arm' ]] && [[ "$process_command" != *'--enable_lsp'* ]]; } ||
+     { [[ "$process_command" =~ '[aA]ntigravity' ]] &&
+       [[ "$process_command" != *codex-status.5s.sh* ]] &&
+       [[ "$process_command" != *"Google Chrome"* ]] &&
+       [[ "$process_command" != */.antigravity-ide/extensions/* ]] &&
+       [[ "$process_command" != /Applications/Antigravity\ IDE.app/* ]] &&
+       [[ "$process_command" != /Applications/Antigravity.app/* ]]; }; then
     antigravity_tasks+=("${pid}"$'\t'"${elapsed}")
   fi
 done <<< "$process_rows"
