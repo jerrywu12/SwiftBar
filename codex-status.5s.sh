@@ -83,6 +83,7 @@ while IFS= read -r process_row; do
        [[ "$process_command" != *codex-status.5s.sh* ]] &&
        [[ "$process_command" != *"Google Chrome"* ]] &&
        [[ "$process_command" != */.antigravity-ide/extensions/* ]] &&
+       [[ "$process_command" != */.claude/worktrees/* ]] &&
        [[ "$process_command" != /Applications/Antigravity\ IDE.app/* ]] &&
        [[ "$process_command" != /Applications/Antigravity.app/* ]]; }; then
     antigravity_tasks+=("${pid}"$'\t'"${elapsed}")
